@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Mail;
+use App\Foto;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
 
     public function getHome(){
-        return view('static.home');
+
+        $slides = Foto::all();
+
+        return view('static.home')->with('slides', $slides);
     }
 
     public function getContato(){
@@ -28,17 +32,13 @@ class HomeController extends Controller
             "mensagem" => "required"
         ]);
 
-        Mail::send("emails.contact",[
-            "mensagem" => $request->get("mensagem"),
-            "telefone" => $request->get("telefone"),
-            "email" => $request->get("email")
-        ], function($message)
+        Mail::send('emails.contact',['teste' => 'testset'], function
+        ($message)
         {
-            $message->from('no-reply@outroteste.com', 'Admin');
-            $message->to('estevangladstone@ejcm.com.br', 'Admin')->subject('Contato do Site - ');
+            $message->to('estevangladstone@ejcm.com.br')->subject('Contato do Site - ');
         });
 
-        return view('static.contato')->with('message', 'Thanks for contacting us!');
+//        return view('static.contato')->with('message', 'Thanks for contacting us!');
     }
 
     public function getSobre(){
