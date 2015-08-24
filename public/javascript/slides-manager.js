@@ -8,9 +8,11 @@ $(document).ready(function(){
         }
         var url = $(this).attr('href'),
             descricao = $(this).parent().parent().find('textarea').val(),
-            _token = $('meta[name="csrf_token"]').attr('content'),
-            _method = $(this).hasClass('delete')? 'DELETE' : 'PUT';
-        console.log(descricao);
+            token = $('input[name="csrf_token"]').attr('value'),
+            method = $(this).hasClass('delete')? 'DELETE' : 'PUT';
+        // console.log(descricao);
+        // console.log(method);
+        // console.log(token);
 
         $.ajax({
             type: 'POST',
@@ -19,11 +21,11 @@ $(document).ready(function(){
             //contentType: "application/json",
             data: {
                 descricao: descricao,
-                //_token: _token,
-                _method: _method
+                _token: token,
+                _method: method
             },
             success: function(data){
-                console.log('lololol');
+                console.log('foi');
             },
             error: function(data){
                 console.log(data);

@@ -2,10 +2,6 @@
 
 @section('titulo', 'Slideshow')
 
-@section('meta')
-  <meta name="csrf_token" ="{{ csrf_token() }}" />
-@endsection
-
 @section('css')
 
 @endsection
@@ -16,6 +12,7 @@
 
   <hr/>
 
+  <input name="csrf_token" value="{{ csrf_token() }}" />
   @foreach($images as $image)
     <div class="row">
       <div class="col-md-2">
