@@ -3,8 +3,6 @@
   <head>
     <meta charset = "UTF-8">
 
-    @yield('meta')
-
     <title>@yield('titulo') | Site institucional</title>
 
     @yield('css')

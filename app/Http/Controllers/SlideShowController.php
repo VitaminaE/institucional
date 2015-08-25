@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class SlideShowController extends Controller
 {
@@ -98,15 +99,11 @@ class SlideShowController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $foto = Foto::find($id);
+        $foto = Foto::findOrFail($id)->update([
+              'description' => $request->descricao
+        ]);
 
-        if(!is_null($foto)){
-            return response()->json(true);
-        }
-        else{
-            return response()->json(false);
-        }
-
+        return response()->json(['answer' => 'updated']);
     }
 
     /**
@@ -117,9 +114,16 @@ class SlideShowController extends Controller
      */
     public function destroy($id)
     {
-//        Foto::findOrFail($id)->delete();
+        $foto = Foto::findOrFail($id);
+        if( unlink(public_path('images/'.$foto->file_name)) ){
+            $foto->delete();
+            return response()->json(['answer' => 'deleted']);
+        }
+        else{
+            return 'error';
+        }
 
-        return response()->json(true);
+        // Deletar também o arquivo correspondente no servidor
     }
 
     public function changeOptions(Request $request)
@@ -129,7 +133,6 @@ class SlideShowController extends Controller
         ]);
 
         $slide_time = 1000 * $request->slide_speed;
-        dd($slide_time);
 
         return back();
     }

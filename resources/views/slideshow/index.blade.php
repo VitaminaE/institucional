@@ -12,9 +12,9 @@
 
   <hr/>
 
-  <input name="csrf_token" value="{{ csrf_token() }}" />
+  <input name="csrf_token" value="{{ csrf_token() }}" class="hidden"/>
   @foreach($images as $image)
-    <div class="row">
+    <div class="slide-options row">
       <div class="col-md-2">
         <div class="img-thumbnail">
           <img class="img-responsive" src="{{asset('images/'.$image->file_name)}}" alt="">
@@ -38,14 +38,6 @@
       </div>
     </div>
   @endforeach
-
-  {{--<form action="{{action('SlideShowController@changeOptions')}}" method="post">--}}
-    {{--<!-- Campo slide_speed -->--}}
-    {{--<div class="form-group">--}}
-      {{--<label for="slide_speed" class="control-label">Velocidade do slideshow:</label>--}}
-      {{--<input type="text" name="slide_speed" id="slide_speed" class="form-control" placeholder="Slide_speed">--}}
-    {{--</div>--}}
-  {{--</form>--}}
 
 @endsection
 
