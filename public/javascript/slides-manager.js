@@ -25,7 +25,7 @@ $(document).ready(function(){
                 _method: method
             },
             success: function(data){
-                switch(data.answer){
+                switch(data.message){
                     case 'updated':
                         alert('wowowowo CONSEGUIU!!');
                         break;
@@ -43,10 +43,9 @@ $(document).ready(function(){
                 }
                 console.log(data.answer);
             },
-            error: function(data){
-                alert('Algo errado não está certo. Não se preocupe,'
-                      + ' enviaremos uma equipe de macacos'
-                      + ' especializados para resolver o seu problema3');
+            error: function(data, err){
+                console.log(data);
+                console.log(err);
             }
         });
     });

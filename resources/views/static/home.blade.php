@@ -13,8 +13,8 @@
         <!-- Indicators -->
         <ol class="carousel-indicators">
           @foreach($slides as $key => $slide)
-            <li data-target="#carousel-container" data-slide-to="{{ $key }}" {{
-            $slides->first() === $slide ? 'class=active' : ''}}></li>
+            <li data-target="#carousel-container" data-slide-to="{{ $key }}"
+                {{ $slides->first() === $slide ? 'class=active' : ''}}></li>
           @endforeach
         </ol>
 
@@ -22,7 +22,7 @@
         <div class="carousel-inner" role="listbox">
           @foreach($slides as $slide)
             <div class="item {{ $slides->first() === $slide ? 'active' : ''}}">
-              <img src="{{asset('images/'.$slide->file_name)}}">
+              <img src="{{asset('images/slideshow/'.$slide->file_name)}}">
               <div class="carousel-caption">
                 {{$slide->description}}
               </div>

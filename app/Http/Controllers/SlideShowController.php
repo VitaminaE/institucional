@@ -52,7 +52,7 @@ class SlideShowController extends Controller
 
         // Set a random number as a name for the image in server
         $file_name = rand(11111,99999).'.'.$request->file('imagem')->getClientOriginalExtension();
-        $destinationPath = public_path().'/images';
+        $destinationPath = public_path().'/images/slideshow';
         $request->file('imagem')->move($destinationPath, $file_name);
 
         $parameters = [
@@ -99,11 +99,16 @@ class SlideShowController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $foto = Foto::findOrFail($id)->update([
+        $foto = Foto::find($id)->update([
               'description' => $request->descricao
         ]);
 
-        return response()->json(['answer' => 'updated']);
+        if(!is_null($foto)){
+            return response()->json(['message' => 'updated']);
+        }
+        else{
+            return response()->json(['message' => 'Record not found'], 404);
+        }
     }
 
     /**
@@ -114,16 +119,20 @@ class SlideShowController extends Controller
      */
     public function destroy($id)
     {
-        $foto = Foto::findOrFail($id);
-        if( unlink(public_path('images/'.$foto->file_name)) ){
-            $foto->delete();
-            return response()->json(['answer' => 'deleted']);
+        $foto = Foto::find($id);
+        if(!is_null($foto)){
+            if( unlink(public_path('images/slideshow/'.$foto->file_name)) ){
+                $foto->delete();
+                return response()->json(['message' => 'deleted']);
+            }
+            else {
+                return response()->json(['message' => 'Could not complete
+                the requested action'], 500);
+            }
         }
         else{
-            return 'error';
+            return response()->json(['message' => 'Record not found'], 404);
         }
-
-        // Deletar também o arquivo correspondente no servidor
     }
 
     public function changeOptions(Request $request)

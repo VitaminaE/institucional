@@ -12,32 +12,38 @@
 
   <hr/>
 
-  <input name="csrf_token" value="{{ csrf_token() }}" class="hidden"/>
-  @foreach($images as $image)
-    <div class="slide-options row">
-      <div class="col-md-2">
-        <div class="img-thumbnail">
-          <img class="img-responsive" src="{{asset('images/'.$image->file_name)}}" alt="">
+  @if(count($images) > 0)
+    <input name="csrf_token" value="{{ csrf_token() }}" class="hidden"/>
+    @foreach($images as $image)
+      <div class="slide-options row">
+        <div class="col-md-2">
+          <div class="img-thumbnail">
+            <img class="img-responsive" src="{{asset('images/slideshow/'.$image->file_name)}}" alt="">
+          </div>
+        </div>
+        <div class="col-md-8">
+          <!-- Campo de texto descricao -->
+          <div class="form-group">
+            <textarea name="descricao" class="form-control"
+                      placeholder="Descrição">{{ $image->description }}</textarea>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <a href="{{action('SlideShowController@update', $image->id)}}" class="action-btn">
+            <button class="btn btn-primary">Update</button>
+          </a>
+          <a href="{{action('SlideShowController@destroy', $image->id)}}"
+             class="action-btn delete">
+            <button class="btn btn-danger">Delete</button>
+          </a>
         </div>
       </div>
-      <div class="col-md-8">
-        <!-- Campo de texto descricao -->
-        <div class="form-group">
-          <textarea name="descricao" class="form-control"
-                    placeholder="Descrição">{{ $image->description }}</textarea>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <a href="{{action('SlideShowController@update', $image->id)}}" class="action-btn">
-          <button class="btn btn-primary">Update</button>
-        </a>
-        <a href="{{action('SlideShowController@destroy', $image->id)}}"
-           class="action-btn delete">
-          <button class="btn btn-danger">Delete</button>
-        </a>
-      </div>
+    @endforeach
+  @else
+    <div class="alert alert-danger">
+      Não há imagens no slideshow atualmente.
     </div>
-  @endforeach
+  @endif
 
 @endsection
 
