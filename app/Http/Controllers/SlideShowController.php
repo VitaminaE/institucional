@@ -135,14 +135,4 @@ class SlideShowController extends Controller
         }
     }
 
-    public function changeOptions(Request $request)
-    {
-        $this->validate($request, [
-            'slide_speed' => 'required|numeric'
-        ]);
-
-        $slide_time = 1000 * $request->slide_speed;
-
-        return back();
-    }
 }

@@ -15,26 +15,39 @@
 //    return view('welcome');
 //});
 
-Route::get('/home', 'HomeController@getHome');
+$locale = Request::segment(1);
 
-Route::get('/contato', 'HomeController@getContato');
-Route::post('/contato', ['as' => 'enviaContato', 'uses' => 'HomeController@postContato']);
+if (array_key_exists($locale, Config::get('locales'))) {
+    \App::setLocale($locale);
+} else {
+    $locale = null;
+}
 
-Route::get('/sobre', 'HomeController@getSobre');
+Route::group(['prefix' => $locale], function(){
 
-//Route::get('slideshow', 'SlideShowController@index');
-//Route::post('slideshow', 'SlideShowController@store');
-//Route::get('slideshow/create', 'SlideShowController@create');
-//Route::post('slideshow/{id}', 'SlideShowController@update');
-//Route::post('slideshow/{id}', 'SlideShowController@destroy');
-Route::resource('slideshow', 'SlideShowController');
-//Route::post('slideshow', 'SlideShowController@changeOptions');
+    Route::get('/home', 'HomeController@getHome');
 
-// Authentication routes...
-Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
+    Route::get('/contato', 'HomeController@getContato');
+    Route::post('/contato', ['as' => 'enviaContato', 'uses' => 'HomeController@postContato']);
 
-// Registration routes...
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
+    Route::get('/sobre', 'HomeController@getSobre');
+
+    //Route::get('slideshow', 'SlideShowController@index');
+    //Route::post('slideshow', 'SlideShowController@store');
+    //Route::get('slideshow/create', 'SlideShowController@create');
+    //Route::post('slideshow/{id}', 'SlideShowController@update');
+    //Route::post('slideshow/{id}', 'SlideShowController@destroy');
+    Route::resource('slideshow', 'SlideShowController');
+    //Route::post('slideshow', 'SlideShowController@changeOptions');
+
+    // Authentication routes...
+    Route::get('auth/login', 'Auth\AuthController@getLogin');
+    Route::post('auth/login', 'Auth\AuthController@postLogin');
+    Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+    // Registration routes...
+    Route::get('auth/register', 'Auth\AuthController@getRegister');
+    Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+});
+

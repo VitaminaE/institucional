@@ -27,20 +27,20 @@
       </div>
     @endif
 
-  <!-- Campo imagem -->
+    <!-- Campo imagem -->
     <div class = "form-group">
       <label for = "imagem" class = "control-label">Imagem:</label>
       <input type = "file" name = "imagem" id = "imagem" class = "form-control" placeholder = "Imagem">
     </div>
 
-        <!-- Campo de texto descricao -->
-      <div class = "form-group">
+    <!-- Campo de texto descricao -->
+    <div class = "form-group">
       <label for = "descricao" class = "control-label">Descrição:</label>
       <textarea name = "descricao" id = "descricao" class = "form-control" placeholder = "Descricao"></textarea>
     </div>
 
-        <!-- Botão de envio -->
-      <div class = "form-group">
+    <!-- Botão de envio -->
+    <div class = "form-group">
       <input type = "submit" id = "enviar" value = "Enviar" class = "btn btn-success">
     </div>
   </form>
