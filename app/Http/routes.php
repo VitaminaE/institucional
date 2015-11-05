@@ -11,10 +11,6 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
 $locale = Request::segment(1);
 
 if (array_key_exists($locale, Config::get('locales'))) {
@@ -25,19 +21,14 @@ if (array_key_exists($locale, Config::get('locales'))) {
 
 Route::group(['prefix' => $locale], function(){
 
-    Route::get('/home', 'HomeController@getHome');
+    Route::get('/', 'HomeController@getHome');
 
     Route::get('/contato', 'HomeController@getContato');
     Route::post('/contato', ['as' => 'enviaContato', 'uses' => 'HomeController@postContato']);
 
     Route::get('/sobre', 'HomeController@getSobre');
 
-    //Route::get('slideshow', 'SlideShowController@index');
-    //Route::post('slideshow', 'SlideShowController@store');
-    //Route::get('slideshow/create', 'SlideShowController@create');
-    //Route::post('slideshow/{id}', 'SlideShowController@update');
-    //Route::post('slideshow/{id}', 'SlideShowController@destroy');
-    Route::resource('slideshow', 'SlideShowController');
+    Route::resource('/slideshow', 'SlideShowController');
     //Route::post('slideshow', 'SlideShowController@changeOptions');
 
     // Authentication routes...
@@ -48,6 +39,8 @@ Route::group(['prefix' => $locale], function(){
     // Registration routes...
     Route::get('auth/register', 'Auth\AuthController@getRegister');
     Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+    Route::get("signature-generator","HomeController@getSignatureGenerator");
 
 });
 

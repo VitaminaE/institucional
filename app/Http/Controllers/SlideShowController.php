@@ -80,17 +80,6 @@ class SlideShowController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  Request  $request
@@ -121,18 +110,15 @@ class SlideShowController extends Controller
     {
         $foto = Foto::find($id);
         if(!is_null($foto)){
-            if( unlink(public_path('images/slideshow/'.$foto->file_name)) ){
-                $foto->delete();
-                return response()->json(['message' => 'deleted']);
+            $image_path = public_path('images/slideshow/'.$foto->file_name);
+            if(file_exists($image_path) && !unlink($image_path)){
+                return response()->json(['message' => 'Could not complete the requested action'], 500);
             }
-            else {
-                return response()->json(['message' => 'Could not complete
-                the requested action'], 500);
-            }
+            $foto->delete();
+            return response()->json(['message' => 'deleted']);
         }
         else{
             return response()->json(['message' => 'Record not found'], 404);
         }
     }
-
 }

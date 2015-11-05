@@ -3,7 +3,7 @@
 @section('titulo', 'Home')
 
 @section('css')
-
+  <link rel="stylesheet" href="{{ asset('css/slideshow.css') }}">
 @stop
 
 @section('conteudo')

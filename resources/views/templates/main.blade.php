@@ -5,10 +5,10 @@
 
     <title>@yield('titulo') | Site institucional</title>
 
-    @yield('css')
-
     <!-- Bootstrap css main cdn file -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('libraries/bootstrap/css/bootstrap.css') }}">
+
+    @yield('css')
   </head>
   <body>
 
@@ -17,9 +17,9 @@
     </div>
 
     <!-- Jquery cdn file  -->
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="{{ asset('libraries/jquery/jquery-1.11.2.min.js') }}"></script>
     <!-- Bootstrap javascript cdn file -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="{{ asset('libraries/bootstrap/js/bootstrap-ie9.min.js') }}"></script>
 
     @yield('javascript')
   </body>

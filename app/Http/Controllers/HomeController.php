@@ -37,13 +37,15 @@ class HomeController extends Controller
         {
             $message->to('estevangladstone@ejcm.com.br')->subject('Contato do Site - ');
         });
-
-//        return view('static.contato')->with('message', 'Thanks for contacting us!');
     }
 
     public function getSobre(){
         return view('static.sobre');
     }
 
+    public function getSignatureGenerator()
+    {
+        return view("signature-generator");
+    }
 
 }
