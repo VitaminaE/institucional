@@ -7,10 +7,15 @@
 
     <!-- Bootstrap css main cdn file -->
     <link rel="stylesheet" href="{{ asset('libraries/bootstrap/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 
     @yield('css')
   </head>
   <body>
+
+    <div class="header">
+      @include('static.partials.menu')
+    </div>
 
     <div class="container">
       @yield('conteudo')

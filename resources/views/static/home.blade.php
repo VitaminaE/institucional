@@ -8,7 +8,7 @@
 
 @section('conteudo')
 
-    @include('static.slideshow')
+    @include('static.partials.slideshow')
 
     <div class="jumbotron">
       <h1>Hello, World!</h1>
