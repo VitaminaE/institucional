@@ -13,9 +13,42 @@
   <div class="container">
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-home " aria-hidden="true"></span>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-cog " aria-hidden="true"></span>
+            Pesquisas
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-user " aria-hidden="true"></span>
+            História
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-thumbs-up " aria-hidden="true"></span>
+            Projetos
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-picture " aria-hidden="true"></span>
+            Teses
+          </a>
+        </li>
+        <li class="last">
+          <a href="#">
+            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+            Contato
+          </a>
+        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div>

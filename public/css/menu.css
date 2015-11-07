@@ -1,12 +1,46 @@
-@media (min-width: 768px){
-  .navbar-nav{
+.navbar {
+  border: 0;
+  border-radius: 0;
+  background-color: #09F;
+}
+
+.navbar-collapse {
+  padding: 0;
+  margin: 0 !important;
+}
+
+.navbar-nav {
+  width: 100% !important;
+  margin: 7.5px 0;
+}
+
+.navbar-nav > li > a{
+  color: white !important;
+  text-align: center;
+}
+
+.navbar-nav > li > a:hover {
+  background: #020202 none repeat scroll 0% 0% !important;
+  border-radius: 2px;
+  transition: all 0.6s ease 0s;
+}
+
+.last {
+  border-right: 0 !important;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav {
     float:none;
     margin: 0 auto;
     display: table;
     table-layout: fixed;
+
   }
 
-  .navbar-nav li{
-    /*padding-left: 2em;*/
+  .navbar-nav > li {
+    min-width: 8em;
+    width: 16.666666666666%;
+    border-right: dotted white 1px;
   }
 }
